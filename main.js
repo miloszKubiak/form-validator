@@ -8,19 +8,24 @@ const popup = document.querySelector('.popup');
 
 
 const showError = (input, msg) => {
+    const formBox = input.parentElement;
+    const errorMsg = formBox.querySelector('.error-text');
 
-}
+    formBox.classList.add('error');
+    errorMsg.textContent = msg;
+};
 
 const clearError = input => {
-
-}
+    const formBox = input.parentElement;
+    formBox.classList.remove('error');
+};
 
 const checkForm = input => {
     input.forEach(el => {
         if (el.value === '') {
             showError(el, el.placeholder);
         } else {
-            clearError();
+            clearError(el);
         };
     });
 };
@@ -28,12 +33,12 @@ const checkForm = input => {
 sendBtn.addEventListener('click', e => {
     e.preventDefault();
     checkForm([userName, pass, pass2, email]);
-})
+});
 
 clearBtn.addEventListener('click', e => {
     e.preventDefault();
 
     [userName, pass, pass2, email].forEach(el => {
         el.value = '';
-    });
+    });  
 });
