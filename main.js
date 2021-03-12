@@ -7,6 +7,29 @@ const clearBtn = document.querySelector('.clear');
 const popup = document.querySelector('.popup');
 
 
+const showError = (input, msg) => {
+
+}
+
+const clearError = input => {
+
+}
+
+const checkForm = input => {
+    input.forEach(el => {
+        if (el.value === '') {
+            showError(el, el.placeholder);
+        } else {
+            clearError();
+        };
+    });
+};
+
+sendBtn.addEventListener('click', e => {
+    e.preventDefault();
+    checkForm([userName, pass, pass2, email]);
+})
+
 clearBtn.addEventListener('click', e => {
     e.preventDefault();
 
