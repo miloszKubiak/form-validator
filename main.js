@@ -30,9 +30,25 @@ const checkForm = input => {
     });
 };
 
+const checkLength = (input, min) => {
+    if (input.value.length < min) {
+        showError(input, `${input.previousElementSibling.innerText.slice(0, -1)} should consist of a minimum ${min} characters.`)
+    };
+};
+
+const checkPassword = (pass1, pass2) => {
+    if (pass1.value !== pass2.value) {
+        showError(pass2, 'Passwords do not match')
+    };
+};
+
 sendBtn.addEventListener('click', e => {
     e.preventDefault();
+
     checkForm([userName, pass, pass2, email]);
+    checkLength(userName, 4);
+    checkLength(pass, 8);
+    checkPassword(pass, pass2);
 });
 
 clearBtn.addEventListener('click', e => {
